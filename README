@@ -1,0 +1,44 @@
+PYTHON CODE BREAKER
+
+Simple code-breaking python curses game inspired by the mobile phone
+game NSA CryptoChallenge.
+
+
+KEYS
+
+ 1   - New Game.
+ 2   - Hint (+15s).
+ 4   - Quit.
+ Del - Clear currently highlighted letter.
+       Space/Backspace also clears.
+ A-Z - Letter to replace.
+       Case doesn't matter.
+
+TIPS
+
+* Look for single-letter words, double letters within words and
+  apostrophes.
+* Look for common words like the, be, to, of, and,
+  a, in, that, have, I, it, for, not etc.
+  http://www.oxforddictionaries.com/words/the-oec-facts-about-the-language
+* The more you play the more trends will become apparent.
+
+
+IMPROVE
+
+Feel free to add your own quotes in quotes.py. Just make sure to use
+a : to separate category and quote, and that the quote itself doesn't
+contain any : characters. Rewrite the quote to - for instance - use
+a ; instead. Or improve the quote parser (get_quote).
+
+
+Good luck, have fun ;-)
+
+
+Albert Veli
+
+Setting Orange,
+the 64th day of Confusion in the Year of Our Lady of Discord 3181
+
+
+       ~~=) All Rights Reversed - No Rights Reserved (=~~
