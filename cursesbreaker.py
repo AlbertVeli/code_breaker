@@ -24,7 +24,6 @@ category = None
 quote = None
 qu = None
 numquotes = None
-spacing = 1
 startpos = [2, 4]
 pos = None
 rchar = None
@@ -278,8 +277,9 @@ def main_game_handler():
     scr.border(0)
 
     # Draw header
-    pos = [maxx // 2 - 11, 1]
-    out_msg('PYTHON CRYPTO CHALLENGE', curses.A_REVERSE)
+    pos = [maxx // 2 - 9, 1]
+    out_msg('PYTHON CODE BREAKER', curses.A_REVERSE)
+
     # Category
     pos = [startpos[0], 2]
     out_msg(category)
@@ -288,6 +288,7 @@ def main_game_handler():
     elapsed = int(time.time() - start_time)
     timestr = "%02d:%02d" % (elapsed // 60, elapsed % 60)
     out_msg(timestr)
+
     # Line separator
     pos = [startpos[0], 3]
     for i in range(maxx - 4):
