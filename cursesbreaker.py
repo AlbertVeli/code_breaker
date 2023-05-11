@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 #
 # Simple code-breaking python curses game inspired
 # by the mobile phone game NSA CryptoChallenge.
@@ -50,6 +50,9 @@ def init_gui():
     curses.noecho()
     curses.cbreak()
     curses.curs_set(False)
+    curses.start_color()
+    curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
+    curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
     # Comment the row below to skip debug.log.
     fp = open('debug.log', 'w')
 
@@ -168,14 +171,14 @@ def print_clear(s):
     global missing
     global errors
     for c in s:
-        attr = False
+        attr = curses.color_pair(1)
         if c in perm:
             p = perm[c]
             if p in guessd:
                 oc = c
                 c = guessd[p]
                 if oc != c:
-                    attr = curses.A_REVERSE
+                    attr |= curses.A_REVERSE
                     # Count errors at same time
                     errors.add(c)
             else:
@@ -192,10 +195,9 @@ def print_perm(s):
     If a char is not in p, print it as is.
     """
     for c in s:
+        attr = curses.color_pair(2)
         if c in perm and perm[c] == rchar:
-            attr = curses.A_REVERSE
-        else:
-            attr = False
+            attr |= curses.A_REVERSE
         if c in perm:
             out_msg(perm[c], attr)
         else:
@@ -375,7 +377,7 @@ def clear_handler():
     label = 'Type letter to replace'
 
 def print_help():
-    print """
+    print ("""
 Python Code Breaker
 
 Keys:
@@ -396,8 +398,8 @@ Tips:
 * The more you play the more trends will become apparent.
 
 Press Enter to start game
-"""
-    raw_input()
+""")
+    input()
 
 # --- Main ---
 
