@@ -20,7 +20,6 @@ fp = None
 category = None
 quote = None
 qu = None
-numquotes = None
 startpos = [2, 4]
 pos = None
 rchar = None
@@ -33,17 +32,7 @@ timestr = None
 final_time = None
 label = None
 state = 'Running'
-
-# One quote per line. Begin with category.
-# Separate category and quote with a colon character.
-# Quotes may not contain the colon character or the
-# universe might explode. At least the quote parser.
-# Further it may not contain tabs and only some special
-# characters, like comma, quote, semicolon and period.
-# Feel free to add more quotes, but remember that some
-# quotes are harder to solve than other.
-# Too short ones almost impossible.
-quotes = open('quotes.txt').read()
+quotes = []
 
 # --- Gui helpers ---
 
@@ -64,7 +53,7 @@ def init_gui():
     # Comment the row below to skip debug.log.
     #fp = open('debug.log', 'w')
 
-# Callback for mouse, no operation
+## Callback for mouse, no operation
 def nop(_):
     pass
 
@@ -80,36 +69,11 @@ def cleanup_gui():
 
 # --- Helpers ---
 
-def get_numquotes():
-    """ Return number of quotes in quotes """
-    global numquotes
-
-    # This will only be True the first time.
-    # On following calls numquotes will be
-    # returned immediately.
-    if numquotes == None:
-        numquotes = 0
-        for line in quotes.split('\n'):
-            line.strip()
-            if (not line.startswith('#')) and (':' in line):
-                numquotes += 1
-
-    return numquotes
-
 def get_quote():
-    """ Choose quote number n at random """
-    n = random.randrange(get_numquotes())
-    i = 0
-    for line in quotes.split('\n'):
-        line.strip()
-        if (not line.startswith('#')) and (':' in line):
-            if i == n:
-                break
-            else:
-                i += 1
-    # Now line is the quote we want
-    # Split it into a category and a quote part
-    category, quote = line.split(':')
+    """ Choose a random quote """
+    # Choose one quote and split it into a
+    # category and a quote part
+    category, quote = random.choice(quotes).split(':')
     category = category.strip()
     quote = quote.strip()
     return (category, quote)
@@ -122,23 +86,10 @@ def get_randperm():
     are cleartext letters and the values are
     ciphertext letters.
     """
-    vals = list()
-    while True:
-        n = random.randrange(26)
-        if not n in vals:
-            vals.append(n)
-            if len(vals) == 26:
-                break
-    # Convert 0-25 to A-Z
-    for i in range(len(vals)):
-        vals[i] = chr(vals[i] + ord('A'))
+    keys = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    vals = keys.copy()
+    random.shuffle(vals)
 
-    # Create dictionary A-Z -> vals
-    keys = list()
-    for i in range(len(vals)):
-        keys.append(chr(i + ord('A')))
-    # keys and vals must be of equal size
-    # for this to work. And they are.
     return dict(zip(keys, vals))
 
 def advance_cursor(x, nl = False):
@@ -275,9 +226,21 @@ def print_interleaved(s, width):
 
     # Check if we're done yet
     if missing == 0:
-        final_time = get_time(timestr, len(errors) * 10)
-        label = 'Well done! Errors = ' + str(len(errors)) + '. Time = ' + final_time + '. 1 = new game. 4 = quit'
-        state = 'Finished'
+        # also check if guesses are correct
+        if sys.version_info[0] == 2:
+            gitems = list(guessd.iteritems())
+        else:
+            gitems = list(guessd.items())
+        equal = True
+        for k, v in gitems:
+            if perm[v] != k:
+                equal = False
+                break
+        if equal:
+            # Game finished
+            final_time = get_time(timestr, len(errors) * 10)
+            label = 'Well done! Errors = ' + str(len(errors)) + '. Time = ' + final_time + '. 1 = new game. 4 = quit'
+            state = 'Finished'
 
 def dbg(s):
     global fp
@@ -419,6 +382,21 @@ Press Enter to start game
 """)
 
 # --- Main ---
+
+# Rules for quotes.txt:
+# One quote per line. Begin with category.
+# Separate category and quote with a colon character.
+# Quotes may not contain the colon character or the
+# universe might explode. At least the quote parser.
+# Further it may not contain tabs and only some special
+# characters, like comma, quote, semicolon and period.
+# Feel free to add more quotes, but remember that some
+# quotes are harder to solve than other.
+# Too short ones almost impossible.
+for line in open('quotes.txt'):
+    line = line.rstrip()
+    if (len(line) > 0) and (not line.startswith('#')) and (':' in line):
+        quotes.append(line)
 
 print_help()
 
