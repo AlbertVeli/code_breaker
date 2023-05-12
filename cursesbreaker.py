@@ -73,9 +73,7 @@ def get_quote():
     """ Choose a random quote """
     # Choose one quote and split it into a
     # category and a quote part
-    category, quote = random.choice(quotes).split(':')
-    category = category.strip()
-    quote = quote.strip()
+    category, quote = map(str.strip, random.choice(quotes).split(':'))
     return (category, quote)
 
 def get_randperm():
