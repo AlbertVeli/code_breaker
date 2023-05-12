@@ -1,0 +1,234 @@
+# Top single letters
+E T A O I N S H R D L U
+
+# Top word beginnings
+T A I S O C M F P W
+
+# Top word endings
+E S D T N Y R O L F
+
+# Top one letter words
+a, I
+
+# Top doubles
+ss, ee, tt, ff, ll, mm, oo
+
+# Top two letter words
+of, to, in, it, is, be, as, at, so, we, he, by, or, on, do, if, me, my, up, an, go, no, us, am
+
+# Top bigrams
+th, he, in, en, nt, re, er, an, ti, es, on, at, se, nd, or, ar, al, te, co, de, to, ra, et, ed, it, sa, em, ro
+
+# Top three letter words
+the, and, for, are, but, not, you, all, any, can, had, her, was, one, our, out, day, get, has, him, his, how, man, new, now, old, see, two, way, who, boy, did, its, let, put, say, she, too, use
+
+# Top trigrams
+the, and, tha, ent, ing, ion, tio, for, nde, has, nce, edt, tis, oft, sth, men
+
+# Top quadrigrams
+that
+ther
+with
+tion
+here
+ould
+ight
+have
+hich
+whic
+this
+thin
+they
+atio
+ever
+from
+ough
+were
+hing
+ment
+
+# Top four letter words
+that, with, have, this, will, your, from, they, know, want, been, good, much, some, time
+
+# 100 most common words
+the
+be
+to
+of
+and
+a
+in
+that
+have
+I
+it
+for
+not
+on
+with
+he
+as
+you
+do
+at
+this
+but
+his
+by
+from
+they
+we
+say
+her
+she
+or
+an
+will
+my
+one
+all
+would
+there
+their
+what
+so
+up
+out
+if
+about
+who
+get
+which
+go
+me
+when
+make
+can
+like
+time
+no
+just
+him
+know
+take
+people
+into
+year
+your
+good
+some
+could
+them
+see
+other
+than
+then
+now
+look
+only
+come
+its
+over
+think
+also
+back
+after
+use
+two
+how
+our
+work
+first
+well
+way
+even
+new
+want
+because
+any
+these
+give
+day
+most
+us
+
+# 25 most common nouns
+time
+person
+year
+way
+day
+thing
+man
+world
+life
+hand
+part
+child
+eye
+woman
+place
+work
+week
+case
+point
+government
+company
+number
+group
+problem
+fact
+
+# 25 most common verbs
+be
+have
+do
+say
+get
+make
+go
+know
+take
+see
+come
+think
+look
+want
+give
+use
+find
+tell
+ask
+work
+seem
+feel
+try
+leave
+call
+
+# 25 most common adjectives
+good
+new
+first
+last
+long
+great
+little
+own
+other
+old
+right
+big
+high
+different
+small
+large
+next
+early
+young
+important
+few
+public
+bad
+same
+able
