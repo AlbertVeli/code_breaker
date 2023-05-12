@@ -87,7 +87,7 @@ def get_randperm():
     ciphertext letters.
     """
     keys = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ')
-    vals = keys.copy()
+    vals = keys[:]
     random.shuffle(vals)
 
     return dict(zip(keys, vals))
