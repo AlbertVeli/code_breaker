@@ -225,22 +225,11 @@ def print_interleaved(s, width):
         i += end - i + 1
 
     # Check if we're done yet
-    if missing == 0:
-        # also check if guesses are correct
-        if sys.version_info[0] == 2:
-            gitems = list(guessd.iteritems())
-        else:
-            gitems = list(guessd.items())
-        equal = True
-        for k, v in gitems:
-            if perm[v] != k:
-                equal = False
-                break
-        if equal:
-            # Game finished
-            final_time = get_time(timestr, len(errors) * 10)
-            label = 'Well done! Errors = ' + str(len(errors)) + '. Time = ' + final_time + '. 1 = new game. 4 = quit'
-            state = 'Finished'
+    if missing == 0 and len(errors) == 0:
+        # Game finished
+        final_time = get_time(timestr, len(errors) * 10)
+        label = 'Well done! Errors = ' + str(len(errors)) + '. Time = ' + final_time + '. 1 = new game. 4 = quit'
+        state = 'Finished'
 
 def dbg(s):
     global fp
