@@ -13,9 +13,6 @@ import random
 # Add current directory to pythonpath
 import os.path
 import sys
-sys.path.append(os.path.dirname(os.path.realpath(__file__)))
-# and import quotes from quotes.py
-from quotes import quotes
 
 # --- Globals ---
 scr = None
@@ -37,6 +34,17 @@ final_time = None
 label = None
 state = 'Running'
 
+# One quote per line. Begin with category.
+# Separate category and quote with a colon character.
+# Quotes may not contain the colon character or the
+# universe might explode. At least the quote parser.
+# Further it may not contain tabs and only some special
+# characters, like comma, quote, semicolon and period.
+# Feel free to add more quotes, but remember that some
+# quotes are harder to solve than other.
+# Too short ones almost impossible.
+quotes = open('quotes.txt').read()
+
 # --- Gui helpers ---
 
 def init_gui():
@@ -54,7 +62,11 @@ def init_gui():
     curses.init_pair(1, curses.COLOR_WHITE, curses.COLOR_BLACK)
     curses.init_pair(2, curses.COLOR_CYAN, curses.COLOR_BLACK)
     # Comment the row below to skip debug.log.
-    fp = open('debug.log', 'w')
+    #fp = open('debug.log', 'w')
+
+# Callback for mouse, no operation
+def nop(_):
+    pass
 
 def cleanup_gui():
     global scr
@@ -63,6 +75,8 @@ def cleanup_gui():
     scr.clear()
     curses.echo()
     curses.endwin()
+    # Disable mouse
+    curses.mousemask = nop
 
 # --- Helpers ---
 
@@ -336,9 +350,13 @@ def key_handler(key):
     global label
     global rchar
     global guessd
+    #if type(key) == str and len(key) == 1:
+    #    dbg(hex(ord(key)) + ' pressed')
+    #else:
+    #    dbg(str(key) + ' pressed')
     key = key.upper()
     # Delete/space/backspace resets replace state
-    if (key == 'KEY_DC') or (key == ' ') or (ord(key) == 8) or (ord(key) == 127):
+    if (key[:3] == 'KEY') or (key == ' ') or (ord(key) == 8) or (ord(key) == 127):
         clear_handler()
     elif not rchar:
         if (key >= 'A') and (key <= 'Z'):
@@ -399,11 +417,17 @@ Tips:
 
 Press Enter to start game
 """)
-    input()
 
 # --- Main ---
 
 print_help()
+
+# Wait for enter
+if sys.version_info[0] == 2:
+    raw_input()
+else:
+    input()
+
 random.seed()
 init_gui()
 

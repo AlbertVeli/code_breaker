@@ -1,13 +1,5 @@
-# One quote per line. Begin with category.
-# Separate category and quote with a colon character.
-# Quotes may not contain the colon character or the
-# universe might explode. At least the quote parser.
-# Further it may not contain tabs and only some special
-# characters, like comma, quote, semicolon and period.
-# Feel free to add more quotes, but remember that some
-# quotes are harder to solve than other.
-# Too short ones almost impossible.
-quotes = """
+Shakespeare: to be, or not to be; that is the question; whether 'tis nobler in the mind to suffer the slings and arrows of outrageous fortune, or to take arms against a sea of troubles
+
 Abraham Lincoln: In the end, it's not the years in your life that count. It's the life in your years.
 
 Abraham Lincoln: Character is like a tree and reputation like a shadow. The shadow is what we think of it; the tree is the real thing.
@@ -311,5 +303,3 @@ Trivia: The Hindus of India once believed that the Earth was a huge bowl (to kee
 Trivia: Sound travels 14 times faster through steel than through air. If you need to signal someone quickly standing on a metal bridge, bang on a steel pipe.
 
 Trivia: Steamboat Geyser, located in Yellowstone National Park, is the most powerful geyser in the world and can shoot hot water 300 feet in the air.
-
-"""
