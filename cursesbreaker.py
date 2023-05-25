@@ -235,6 +235,26 @@ def dbg(s):
         fp.write(s + '\n')
         fp.flush()
 
+def print_alphabets():
+    global pos
+
+    pos0 = maxx - 28
+    attr = curses.color_pair(1)
+    alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
+    pos = [pos0, maxy - 3]
+    out_msg(alphabet, attr)
+    out_msg('', nl = True)
+    pos[0] = pos0
+    vals = ''.join(guessd.values())
+    keys = ''.join(guessd.keys())
+    attr = curses.color_pair(2)
+    for c in alphabet:
+        if c in vals:
+            i = vals.index(c)
+            out_msg(keys[i], attr)
+        else:
+            out_msg('.')
+
 def main_game_handler():
     global pos
     global timestr
@@ -264,6 +284,9 @@ def main_game_handler():
     pos[0] = startpos[0]
     pos[1] = startpos[1]
     print_interleaved(qu, maxx // 2 - 5)
+
+    # Draw substitution table (clear/cipher alphabets)
+    print_alphabets()
 
     # Status bar
     pos = [startpos[0], maxy - 2]
